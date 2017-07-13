@@ -17,9 +17,9 @@ namespace imob_insights.Controllers
         public Table1Controller(TestContext context)
         {
             var db = context.Database.GetDbConnection();
-            db.Open();
-            ca marche mais il faut faire le open ....
-            
+            db.Open();//ca marche mais il faut faire le open ....
+
+
             _context = context;    
         }
 
