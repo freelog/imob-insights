@@ -10,6 +10,7 @@ using imob_insights.Models;
 
 namespace imob_insights.Controllers
 {
+    [Route("api/[controller]")]
     public class Table1Controller : Controller
     {
         private readonly TestContext _context;
@@ -24,9 +25,15 @@ namespace imob_insights.Controllers
         }
 
         // GET: Table1
+        [HttpGet(Name = "GetList")]
+        public async Task<IActionResult> GetList()
+        {
+            var result = await _context.Table1.ToListAsync();
+            return new ObjectResult(result);
+        }
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Courses.ToListAsync());
+            return View(await _context.Table1.ToListAsync());
         }
 
         // GET: Table1/Details/5
@@ -37,7 +44,7 @@ namespace imob_insights.Controllers
                 return NotFound();
             }
 
-            var table1 = await _context.Courses
+            var table1 = await _context.Table1
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (table1 == null)
             {
@@ -77,7 +84,7 @@ namespace imob_insights.Controllers
                 return NotFound();
             }
 
-            var table1 = await _context.Courses.SingleOrDefaultAsync(m => m.Id == id);
+            var table1 = await _context.Table1.SingleOrDefaultAsync(m => m.Id == id);
             if (table1 == null)
             {
                 return NotFound();
@@ -128,7 +135,7 @@ namespace imob_insights.Controllers
                 return NotFound();
             }
 
-            var table1 = await _context.Courses
+            var table1 = await _context.Table1
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (table1 == null)
             {
@@ -143,15 +150,15 @@ namespace imob_insights.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var table1 = await _context.Courses.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Courses.Remove(table1);
+            var table1 = await _context.Table1.SingleOrDefaultAsync(m => m.Id == id);
+            _context.Table1.Remove(table1);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
         private bool Table1Exists(int id)
         {
-            return _context.Courses.Any(e => e.Id == id);
+            return _context.Table1.Any(e => e.Id == id);
         }
     }
 }

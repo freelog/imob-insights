@@ -16,7 +16,7 @@ namespace imob_insights.Data
         {
         }
 
-        public DbSet<Table1> Courses { get; set; }
+        public DbSet<Table1> Table1 { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
